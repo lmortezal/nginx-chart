@@ -7,8 +7,8 @@ autoscaling:
   enabled: true
   minReplicas: 2
   maxReplicas: 6
-  targetCPUUtilizationPercentage: 70  # Target CPU utilization percentage
-  targetMemoryUtilizationPercentage: 70  # Target memory utilization percentage
+  targetCPUUtilizationPercentage: 70 # Target CPU utilization percentage
+  targetMemoryUtilizationPercentage: 70 # Target memory utilization percentage
 resources:
   requests:
     memory: "16Mi"
@@ -49,15 +49,17 @@ istio:
               host: nginx-chart
               port:
                 number: 80
-                
-                
+
 nginxConfig: |
+  upstream kuard {
+      server  kuard-svc:8080;
+  }
   server {
       listen       80;
       server_name  _;
 
       location / {
-          proxy_pass         http://kuard-svc:8080;
+          proxy_pass         http://kuard;
           proxy_set_header   Host              $host;
           proxy_set_header   X-Real-IP         $remote_addr;
           proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
@@ -69,9 +71,6 @@ nginxConfig: |
           root   /usr/share/nginx/html;
       }
   }
-
-
-
 
 kuard:
   name: kuard
