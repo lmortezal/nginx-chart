@@ -5,6 +5,12 @@ metadata:
   labels:
     app: {{ include "nginx-chart.name" . }}
 spec:
+  minReadySeconds: {{ .Values.minReadySeconds  }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: {{ .Values.maxSurge  }}
+      maxUnavailable: {{ .Values.maxUnavailable  }}
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
