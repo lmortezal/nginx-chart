@@ -1,0 +1,42 @@
+replicaCount: 1
+
+ingress:
+  enabled: false
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 70  # Target CPU utilization percentage
+  targetMemoryUtilizationPercentage: 70  # Target memory utilization percentage
+
+
+image:
+  repository: nginx
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+service:
+  type: ClusterIP
+  port: 80
+
+istio:
+  enabled: true
+  gateway:
+    name: nginx-gateway
+    namespace: istio-system
+  virtualService:
+    hosts:
+      - "*"
+    gateways:
+      - nginx-gateway
+    http:
+      - match:
+          - uri:
+              prefix: "/"
+        route:
+          - destination:
+              host: nginx-chart
+              port:
+                number: 80
+

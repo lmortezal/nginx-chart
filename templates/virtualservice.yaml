@@ -1,0 +1,19 @@
+{{- if .Values.istio.enabled }}
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ include "nginx-chart.fullname" . }}-vs
+spec:
+  hosts: {{ toJson .Values.istio.virtualService.hosts }}
+  gateways: {{ toJson .Values.istio.virtualService.gateways }}
+  http:
+    - match:
+        - uri:
+            prefix: "/"
+      route:
+        - destination:
+            host: {{ include "nginx-chart.fullname" . }}  # Corrected: Use templating in the template file
+            port:
+              number: 80
+{{- end }}
+
