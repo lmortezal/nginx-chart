@@ -5,7 +5,7 @@ ingress:
 
 autoscaling:
   enabled: true
-  minReplicas: 3
+  minReplicas: 2
   maxReplicas: 6
   targetCPUUtilizationPercentage: 70  # Target CPU utilization percentage
   targetMemoryUtilizationPercentage: 70  # Target memory utilization percentage
