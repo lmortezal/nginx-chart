@@ -5,10 +5,10 @@ ingress:
 
 autoscaling:
   enabled: true
-  minReplicas: 2
-  maxReplicas: 6
-  targetCPUUtilizationPercentage: 70 # Target CPU utilization percentage
-  targetMemoryUtilizationPercentage: 70 # Target memory utilization percentage
+  minReplicas: 1
+  maxReplicas: 2
+  targetCPUUtilizationPercentage: 99 # Target CPU utilization percentage
+  targetMemoryUtilizationPercentage: 99 # Target memory utilization percentage
 resources:
   requests:
     memory: "16Mi"
@@ -83,7 +83,7 @@ kuard:
       memory: "16Mi"
       cpu: "20m"
     limits:
-      memory: "32Mi"
+      memory: "450Mi"
       cpu: "40m"
   service:
     type: ClusterIP
