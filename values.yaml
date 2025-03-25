@@ -9,7 +9,13 @@ autoscaling:
   maxReplicas: 2
   targetCPUUtilizationPercentage: 70  # Target CPU utilization percentage
   targetMemoryUtilizationPercentage: 70  # Target memory utilization percentage
-
+resources:
+  requests:
+    memory: "16Mi"
+    cpu: "20m"
+  limits:
+    memory: "32Mi"
+    cpu: "40m"
 
 image:
   repository: nginx

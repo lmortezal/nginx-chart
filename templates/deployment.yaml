@@ -20,8 +20,11 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           resources:
             requests:
-              memory: "32Mi"
-              cpu: "50m"
+              memory: {{ .Values.resources.requests.memory }}
+              cpu: {{ .Values.resources.requests.cpu }}
+            limits:
+              limits: {{ .Values.resources.limits.memory }}
+              cpu: {{ .Values.resources.limits.cpu }}
           ports:
             - containerPort: 80
 
