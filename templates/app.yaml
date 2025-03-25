@@ -5,22 +5,20 @@ metadata:
   labels:
     app: {{ .Values.kuard.name }}
 spec:
-  minReadySeconds: {{ .Values.minReadySeconds  }}
+  minReadySeconds: {{ .Values.minReadySeconds }}
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: {{ .Values.maxSurge  }}
-      maxUnavailable: {{ .Values.maxUnavailable  }}
+      maxSurge: {{ .Values.maxSurge }}
+      maxUnavailable: {{ .Values.maxUnavailable }}
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: {{ .Values.kuard.name }}
-spec:
   template:
     metadata:
       labels:
         app: {{ .Values.kuard.name }}
-spec:
     spec:
       containers:
         - name: nginx
@@ -35,4 +33,3 @@ spec:
               cpu: {{ .Values.kuard.resources.limits.cpu }}
           ports:
             - containerPort: 8080
-
