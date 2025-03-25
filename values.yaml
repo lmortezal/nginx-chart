@@ -76,7 +76,7 @@ kuard:
   name: kuard
   image:
     repository: gcr.io/kuar-demo/kuard-amd64
-    tag: blue
+    tag: green
     pullPolicy: IfNotPresent
   resources:
     requests:
