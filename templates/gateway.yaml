@@ -12,7 +12,6 @@ spec:
         number: {{ .Values.service.port }}
         name: http
         protocol: HTTP
-      hosts:
-        - "*"
+      hosts: {{ toJson .Values.istio.virtualService.hosts }}
 {{- end }}
 
