@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.kuard.name }}
+  labels:
+    app: {{ .Values.kuard.name }}
+spec:
+  minReadySeconds: {{ .Values.minReadySeconds  }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: {{ .Values.maxSurge  }}
+      maxUnavailable: {{ .Values.maxUnavailable  }}
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.kuard.name }}
+spec:
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.kuard.name }}
+spec:
+    spec:
+      containers:
+        - name: nginx
+          image: "{{ .Values.kuard.image.repository }}:{{ .Values.kuard.image.tag }}"
+          imagePullPolicy: {{ .Values.kuard.image.pullPolicy }}
+          resources:
+            requests:
+              memory: {{ .Values.kuard.resources.requests.memory }}
+              cpu: {{ .Values.kuard.resources.requests.cpu }}
+            limits:
+              memory: {{ .Values.kuard.resources.limits.memory }}
+              cpu: {{ .Values.kuard.resources.limits.cpu }}
+          ports:
+            - containerPort: 8080
+

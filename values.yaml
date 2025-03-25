@@ -50,3 +50,21 @@ istio:
               port:
                 number: 80
 
+
+
+kuard:
+  name: kuard-app
+  image:
+    repository:
+    tag:
+    pullPolicy: IfNotPresent
+  resources:
+    requests:
+      memory: "16Mi"
+      cpu: "20m"
+    limits:
+      memory: "32Mi"
+      cpu: "40m"
+  service:
+    type: ClusterIP
+    port: 8080

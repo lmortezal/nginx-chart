@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{  .Values.kuard.name }}-svc"
+spec:
+  type: {{ .Values.kuard.service.type }}
+  ports:
+    - port: {{ .Values.kuard.service.port }}
+      targetPort: 8080
+      protocol: TCP
+      name: http
+  selector:
+    app: {{  .Values.kuard.name }}
+
