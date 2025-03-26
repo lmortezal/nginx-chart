@@ -56,7 +56,7 @@ nginxConfig: |
   }
 
   server {
-      listen 80 ssl;
+      listen 80;
       server_name _;
   
       location / {
