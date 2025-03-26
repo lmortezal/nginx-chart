@@ -12,7 +12,7 @@ spec:
             prefix: "/"
       route:
         - destination:
-            host: {{ include "nginx-chart.fullname" . }}  # Corrected: Use templating in the template file
+            host: "{{  .Values.kuard.name }}-svc"  # Corrected: Use templating in the template file
             port:
               number: 80
 {{- end }}

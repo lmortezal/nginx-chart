@@ -11,7 +11,7 @@ spec:
     rollingUpdate:
       maxSurge: {{ .Values.maxSurge }}
       maxUnavailable: {{ .Values.maxUnavailable }}
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.kuard.replicaCount }}
   selector:
     matchLabels:
       app: {{ .Values.kuard.name }}

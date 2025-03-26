@@ -19,6 +19,7 @@ spec:
     metadata:
       labels:
         app: {{ include "nginx-chart.name" . }}
+        istio-injection: disabled
     spec:
       volumes:
         - name: nginx-config
